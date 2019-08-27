@@ -1,0 +1,32 @@
+total 18165440
+-rw-r--r--@ 1 cmdb  staff         832 Aug 27 13:10 README.md
+-r--r--r--  1 cmdb  staff  4582672018 Aug 27 13:42 SRR072893.fastq
+-rw-r--r--  1 cmdb  staff  3985446475 Aug 27 13:45 SRR072893.sam
+-rw-r--r--  1 cmdb  staff   619813654 Aug 27 13:46 SRR072893.sorted.bam
+-rw-r--r--  1 cmdb  staff      240216 Aug 27 13:46 SRR072893.sorted.bam.bai
+-rw-r--r--  1 cmdb  staff      627558 Aug 27 13:43 SRR072893_fastqc.html
+-rw-r--r--  1 cmdb  staff      511890 Aug 27 13:43 SRR072893_fastqc.zip
+-rw-r--r--  1 cmdb  staff      383396 Aug 27 12:42 SRR072903..sorted.bam
+-rw-r--r--  1 cmdb  staff     1989028 Aug 27 11:55 SRR072903.10K.fastq
+-rw-r--r--  1 cmdb  staff      593341 Aug 27 12:01 SRR072903.10K_fastqc.html
+-rw-r--r--  1 cmdb  staff      365020 Aug 27 12:01 SRR072903.10K_fastqc.zip
+-rw-r--r--  1 cmdb  staff     1903831 Aug 27 12:26 SRR072903.sam
+-rw-r--r--  1 cmdb  staff      383396 Aug 27 13:47 SRR072903.sorted.bam
+-rw-r--r--  1 cmdb  staff      130536 Aug 27 13:47 SRR072903.sorted.bam.bai
+-rw-r--r--  1 cmdb  staff           0 Aug 27 13:47 SRR072905.sorted.bam
+-rw-r--r--  1 cmdb  staff           0 Aug 27 13:53 day2_lunch_exercise2.txt
+-rwxr-xr-x@ 1 cmdb  staff          88 Aug 27 11:53 doAnalysis.sh
+-rwxr-xr-x@ 1 cmdb  staff         537 Aug 27 13:42 doRNA-seq.sh
+-rw-r--r--  1 cmdb  staff     2154166 Aug 27 13:47 e2t.ctab
+-rw-r--r--  1 cmdb  staff     5414770 Aug 27 13:47 e_data.ctab
+-rw-r--r--  1 cmdb  staff     1745148 Aug 27 13:47 i2t.ctab
+-rw-r--r--  1 cmdb  staff     2213702 Aug 27 13:47 i_data.ctab
+-rw-r--r--  1 cmdb  staff    32929686 Aug 27 13:47 quantitate.SRR072893.bam
+-rw-r--r--  1 cmdb  staff    31483168 Aug 27 13:47 quantitate.SRR072903.bam
+-rw-r--r--  1 cmdb  staff          93 Aug 27 12:40 sample.sorted.bam
+-rw-r--r--  1 cmdb  staff     2902521 Aug 27 13:47 t_data.ctab
+drwx------  3 cmdb  staff          96 Aug 27 13:47 tmp.R860OTln
+
+/Users/cmdb/qbb2019-answers/day2-lunch/tmp.R860OTln:
+total 0
+-rw-r--r--  1 cmdb  staff  0 Aug 27 13:47 quantitate.SRR072905.bam.tmp
