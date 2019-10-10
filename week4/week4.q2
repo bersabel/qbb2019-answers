@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+
+
+
+# allele freq from freq_stat.frq MAF column 4 in stat_frq folder
+#  take value convert to float
+#  make a list and append the float value 
+
+import sys
+import matplotlib.pyplot as plt 
+import numpy as np
+
+allele = []
+for line in open(sys.argv[1]):
+    column = line.rstrip("\t").split()
+    if column[0]!= 'CHR':
+        allele.append(float(column[4]))
+# print(allele)
+   
+#Graphing 
+
+fig,ax = plt.subplots()
+
+ax.hist(allele, bins = 100)
+
+#ax[1,1].hist(predicted)
+
+# ax[0,0].hist(dp_list, bins = 100)
+# ax[0,1].hist(qual_value, bins = 1000 , range = [0,5000])
+# ax[1,0].hist(allele_list, bins = 100)
+
+
+# last one specify your x and y vlaue
+# values = list(predicted.values())
+# calling = list(range(len(predicted)))
+#
+# plt.bar(calling,values, align = 'center' )
+# #print(list(predicted.keys()))
+# plt.xticks(calling,list(predicted.keys()), rotation = 'vertical', size = 5 )
+#
+ax.set_xlabel("MAF")
+ax.set_ylabel("freq")
+#
+#
+#
+fig. savefig("allelefreq")
+plt.close(fig)
+#
+# #run ./plotvariant.py output.ann.vcf
+#
+#
+# y axis = MAF = 4
+# X axis = NCHROBS = 5
