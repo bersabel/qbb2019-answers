@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+
+import sys
+import matplotlib.pyplot as plt 
+import numpy as np
+
+
+
+
+
+
+
+
+# to run
+# sed 's/_/ /1' BYxRM_PhenoData.txt > phenotype.data
+#plink --allow-extra-chr --allow-no-sex --all-pheno --mind --vcf BYxRM_segs_saccer3.bam.simplified.vcf --pheno phenotype.data --assoc --out phenoassoc
+#./manhattan.py
+
+
+# dictionary to pull out values
+# chr column 0 BP 2 nmiss =3 and p=8
+
+Dic = {}
+
+
+
+
+for line in open(sys.argv[1]):
+    column = line.rstrip("\t").split()
+    if column[1] == 'SNP' or 'NA' in column:
+        continue
+    else:
+        p = -np.log10(float(column[8]))
+        if column[0] in Dic : 
+            Dic[column[0]][0]. append(float(column[2]))
+            Dic[column[0]][1]. append(p)
+        else:
+            Dic[column[0]] =[[],[]]
+            Dic[column[0]][0]. append(float(column[2]))
+            Dic[column[0]][1]. append(p)
+ 
+ # sort into two bins based on thershold
+ # want to keep bp and P value info
+ # make a list 
+ 
+# print (Dic.keys())
+
+fig,ax = plt.subplots(figsize=(20,5))
+offset = 0
+
+for chrmo in Dic.keys():
+#print(Dic[chrmo][1])
+    bin_sig= []
+    bin2 = []
+    bp1_sig = []
+    bp2 = []
+    bpmax = max(Dic[chrmo][0])
+    
+    # print(bpmax)
+    i = 0
+    for value in Dic[chrmo][1]:
+        bp = Dic[chrmo][0][i]
+        if value > 5:
+             bin_sig.append(value)
+             bp1_sig.append(bp+offset)
+        else:
+             bin2.append(value)
+             bp2.append(bp+offset)
+        i = i+1
+   
+    offset =+ bpmax
+#print(len(bin_sig),len(bin2),len(bp1_sig),len(bp2))
+#print(bin_sig)
+#print(Dic) 
+# Graphing
+# for x axis need bp
+# for y axis need p vlaue
+    ax.scatter(bp1_sig,bin_sig, marker='.', color='red')
+    ax.scatter(bp2,bin2,marker='.', color='black')
+
+fig.savefig('M_PLOT')
+
+
+
