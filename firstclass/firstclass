@@ -1,0 +1,184 @@
+#!/usr/bin/env python3
+
+
+# align the contigs === gives me a fafsa file == Manipulate
+
+# compute contgs , min/max, averg contig length and N50 
+
+# align them to the genome command line 
+# fafsa file read it from sys.argv
+# fassa reader get reader and seq
+# for each seq find length and store and count number contigs
+# at the end find max,min,avg etc
+
+
+
+import sys
+import matplotlib.pyplot as plt 
+import pandas as pd
+import numpy as np
+
+target_start =[]
+target_end =[]
+
+contig_start = []
+contig_end = []
+
+
+contig = {}
+
+for line in open(sys.argv[1]):
+    if line.startswith('#'):
+        continue
+    fields = line.rstrip("\n").split()
+    if fields[2] == "+":
+        ref_start = int(fields[4])
+        ref_end = int(fields[5])
+        contig_start = int(fields[9])
+        contig_end = int(fields[10])
+        contig_leg = abs(contig_end - contig_start)
+        contig[int(ref_start)]=[ref_start,ref_end, contig_leg]
+ref_start_list = []
+ref_end_list = []
+contig_leg_list = []
+for key in sorted(contig):
+    ref_start_list.append(contig[key][0])
+    ref_end_list.append(contig[key][1])
+    contig_leg_list.append(contig[key][2])
+# print(len(contig))
+fig, ax = plt.subplots()
+count = 0
+for i in range(len(ref_start_list)):
+   plt.plot([count, count+contig_leg_list[i]], [ref_start_list[i], ref_end_list[i]], "r-") 
+   count += int(contig_leg_list[i])
+# print(len(ref_start_list))
+ax.set_title("Assembly Plot")
+ax.set_xlabel("Contigs")
+ax.set_ylabel("Reference Genome")
+# plt.ylim((20000,100000))
+# plt.xlim((0,4000))
+plt.tight_layout()
+fig.savefig("nanopore.png")
+plt.close() 
+
+# runlastz file 
+    
+   #  def __init__(self, fh):
+#         self.fh = fh
+#         self.last_ident = None
+#         self.eof = False
+#
+#     def next(self):
+#
+#         if self.eof:
+#             return None, None
+#         elif self.last_ident is None:
+#             line = self.fh.readline()
+#             assert line.startswith(">"), "Not a FASTA file"
+#             ident = line[1:].rstrip("\n")
+#         else:
+#             ident = self.last_ident
+#
+#         #If reach this point, ident is set correctly
+#         sequences = []
+#         while True:
+#             line = self.fh.readline()
+#             if line == "":
+#                 self.eof = True
+#                 break
+#             elif line.startswith(">"):
+#                 self.last_ident = line[1:].rstrip("\n")
+#                 break
+#             else:
+#                 sequences.append(line.strip())
+#         sequence = "".join(sequences)
+#         return ident, sequence
+#
+# for i in range(1, len(sys.argv)):
+#         contig_file = open(sys.argv[i])
+#         contig_reader = FASTAReader(contig_file)
+#         contig_counter = 0
+#         contig_lengths = []
+#
+#         while True:
+#             ident, sequence = contig_reader.next()
+#             if not ident is None:
+#                 contig_counter += 1
+#                 contig_lengths.append(len(sequence))
+#             else:
+#                 break
+# avegcontigs = sum(contig_lengths)/len(contig_lengths)
+# print("The min is", min(contig_lengths), "the max number is", max(contig_lengths), "the average is", avegcontigs, "number of contig is", contig_counter)
+#
+# contigs_sorted = sorted(contig_lengths)
+# avg_contigs_sorted = sum(contigs_sorted)/2
+# for i in avg_contigs_sorted:
+
+        
+# N50
+# List with the length of count
+#sort list
+#add the list and divided by 2
+# for i in list less than or greater than 
+        
+        # ./firstclasscode contigs.fasta
+        
+
+  #
+#  contiglength = []
+#  length = []
+#  leng = mini - 
+#  min = []
+#  max = []
+#  avglength = []
+#  N50 = []
+#  total = []
+#  sum = []
+#
+#  length.sort()
+#  length.reverse()
+#
+#
+#
+#  contiglength. append(len())
+#  if len() > leng :
+#      sum += len()
+#      length.append(len())
+#
+#
+# # nean contig size
+#
+#  avglength = int (sum/len(length))
+#  for con in length :
+#      if len(avglength) > len(length)/2 :
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
