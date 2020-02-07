@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+
+# Simulate the time to fixation under a range of different starting allele frequencies
+# Import libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+# s = 0
+N = 100
+n1 = 0.75
+def simulation(q,N, s, repetitions=1000):
+    N= 2*int(N)
+    n1 = np.ones(repetitions, dtype=np.uint64) * (q * N)
+    # n1 = np.ones(repetitions, dtype=np.uint64) * (p* N)
+    T = np.empty_like(n1)
+    update = (n1 > 0) & (n1 < N)
+    t = 0
+    while update.any():
+        t += 1
+        p = n1 * (1 + s) / (N + n1 * s)
+        n1[update] = np.random.binomial(N, p[update])
+        T[update] = t
+        update = (n1 > 0) & (n1 < N)
+    return n1 == N, T
+fixations, times = simulation(N=100, s=0, q= 0.5, repetitions=1000)
+fixation_prob = fixations.mean()
+fixation_time = times[fixations].mean()
+w, h = plt.rcParams['figure.figsize']
+fig, ax = plt.subplots(figsize=(2 * w, h))
+sns.distplot(times[fixations], ax=ax)
+ax.axvline(times[fixations].mean(), color='k', ls='--')
+ax.set(xlabel='Fixation time', ylabel='Frequency')
+sns.despine()
+plt.show()
